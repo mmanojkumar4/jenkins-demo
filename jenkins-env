@@ -1,4 +1,4 @@
-pipeline {
+/* pipeline {
     agent any
 
     environment {
@@ -12,6 +12,32 @@ pipeline {
                 bat 'echo App Name: %APP_NAME%'
                 bat 'echo Environment: %ENV_TYPE%'
             }
+        }
+    }
+}
+
+
+*/
+
+pipeline {
+    agent any
+
+    environment {
+        OWNER = 'Manoj'
+    }
+
+    stages {
+        stage('Create File') {
+            steps {
+                bat 'echo Owner: %OWNER% > env-output.txt'
+                bat 'echo Build: %BUILD_NUMBER% >> env-output.txt'
+            }
+        }
+    }
+
+    post {
+        success {
+            archiveArtifacts artifacts: 'env-output.txt'
         }
     }
 }
