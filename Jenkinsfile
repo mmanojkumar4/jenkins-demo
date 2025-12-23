@@ -16,7 +16,7 @@ pipeline {
 
         stage('Create Output') {
             steps {
-                bat 'echo Pipeline from GitHub > output.txt'
+                bat 'echo Pipeline from GitHub > pipegit.txt'
             }
         }
     }
