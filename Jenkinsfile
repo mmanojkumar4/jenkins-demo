@@ -1,24 +1,45 @@
 
+// pipeline {
+//     agent any
+
+//     stages {
+//         stage('Good Stage') {
+//             steps {
+//                 echo 'This stage will pass'
+//             }
+//         }
+
+//         stage('Failing Stage') {
+//             steps {
+//                 bat 'echo wrongcommand'
+//             }
+//         }
+
+//         stage('Never Runs') {
+//             steps {
+//                 echo 'You will not see this'
+//             }
+//         }
+//     }
+// }
+
+
+
 pipeline {
     agent any
 
     stages {
-        stage('Good Stage') {
+        stage('Create Output') {
             steps {
-                echo 'This stage will pass'
+                bat 'echo Pipeline artifact demo > pipeline-output.txt'
+                bat 'echo Build Number: %BUILD_NUMBER% >> pipeline-output.txt'
             }
         }
+    }
 
-        stage('Failing Stage') {
-            steps {
-                bat 'echo wrongcommand'
-            }
-        }
-
-        stage('Never Runs') {
-            steps {
-                echo 'You will not see this'
-            }
+    post {
+        success {
+            archiveArtifacts artifacts: 'pipeline-output.txt'
         }
     }
 }
