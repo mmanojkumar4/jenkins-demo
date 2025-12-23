@@ -1,23 +1,25 @@
+
 pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Good Stage') {
             steps {
-                echo 'Code checked out from GitHub'
+                echo 'This stage will pass'
             }
         }
 
-        stage('Read README') {
+        stage('Failing Stage') {
             steps {
-                bat 'type README.md'
+                bat 'wrongcommand'
             }
         }
 
-        stage('Create Output') {
+        stage('Never Runs') {
             steps {
-                bat 'echo Pipeline from GitHub > pipegit.txt'
+                echo 'You will not see this'
             }
         }
     }
 }
+
