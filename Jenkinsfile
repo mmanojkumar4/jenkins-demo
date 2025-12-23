@@ -11,7 +11,7 @@ pipeline {
 
         stage('Failing Stage') {
             steps {
-                bat 'wrongcommand'
+                bat 'echo wrongcommand'
             }
         }
 
