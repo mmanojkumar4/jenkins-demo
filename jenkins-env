@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    environment {
+        APP_NAME = 'jenkins-demo'
+        ENV_TYPE = 'dev'
+    }
+
+    stages {
+        stage('Use Custom Variables') {
+            steps {
+                bat 'echo App Name: %APP_NAME%'
+                bat 'echo Environment: %ENV_TYPE%'
+            }
+        }
+    }
+}
